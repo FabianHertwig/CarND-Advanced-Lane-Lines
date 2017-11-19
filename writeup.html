@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>writeup</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h2 id="toc_0">Writeup Template</h2>
+
+<p><strong>Advanced Lane Finding Project</strong></p>
+
+<p>The goals / steps of this project are the following:</p>
+
+<ul>
+<li>Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.</li>
+<li>Apply a distortion correction to raw images.</li>
+<li>Use color transforms, gradients, etc., to create a thresholded binary image.</li>
+<li>Apply a perspective transform to rectify binary image (&quot;birds-eye view&quot;).</li>
+<li>Detect lane pixels and fit to find the lane boundary.</li>
+<li>Determine the curvature of the lane and vehicle position with respect to center.</li>
+<li>Warp the detected lane boundaries back onto the original image.</li>
+<li>Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.</li>
+</ul>
+
+<h2 id="toc_1"><a href="https://review.udacity.com/#!/rubrics/571/view">Rubric</a> Points</h2>
+
+<h3 id="toc_2">Here I will consider the rubric points individually and describe how I addressed each point in my implementation.</h3>
+
+<hr>
+
+<h3 id="toc_3">Writeup</h3>
+
+<h4 id="toc_4">1. Provide a Writeup that includes all the rubric points and how you addressed each one.</h4>
+
+<p>You&#39;re reading it! If you want to see at the corresponding code take a look at the <a href="./Advanced%20Lane%20Finding.ipynb">Advanced Lane Finding.ipynb</a>. It is basically structured by following the same rubriks as this document.</p>
+
+<h3 id="toc_5">Camera Calibration</h3>
+
+<h4 id="toc_6">1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image.</h4>
+
+<p>For the in depth theory behinde camera calibration check out <a href="https://docs.opencv.org/2.4/doc/tutorials/calib3d/camera_calibration/camera_calibration.html">this description</a> by opencv.</p>
+
+<p>To undistort an image the pixels of an image are multiplied with a transformation matrix. The transformation matrix is calculated by comparing photographs of a checkerboard with its theoretical flat representation. </p>
+
+<p>Here is a distorted image of a checkerboard.</p>
+
+<p><img src="./submission_img/check_undist.png" alt="checkerbord distorted"></p>
+
+<p>And here it is undistorted.</p>
+
+<p><img src="./submission_img/check_dist.png" alt="checkerbord undistorted"></p>
+
+<h3 id="toc_7">Pipeline (single images)</h3>
+
+<h4 id="toc_8">1. Provide an example of a distortion-corrected image.</h4>
+
+<p>Here you can see the distorted and undistorted image from the camera in the car.</p>
+
+<p>Distorted:
+<img src="./submission_img/street_dist.png" alt="street distorted"></p>
+
+<p>Undistorted:
+<img src="./submission_img/street_undist.png" alt="street distorted"></p>
+
+<p>The differences are subtle. But look at the car at the right edge of the image and you will see the differences.</p>
+
+<h4 id="toc_9">2. Describe how you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.</h4>
+
+<p>In the notebook all filteres discussed in the course are implemented and you can experiment with them by using sliders provided with the interactive widgets. I think the sobel filter in x orientation and the stauration channel of the hls colorspace are most useful for this task. So I added up the binary outputs of these filters to create an image to find lane lines. </p>
+
+<p>The thresholds are:</p>
+
+<ul>
+<li>sobel in x orientation: all pixels above 15 are used to find lane lines.</li>
+<li>s channel: all pixels above 110 are used to find lane lines.</li>
+</ul>
+
+<p>Image with sobel filter and saturation thresholding:
+<img src="./submission_img/image_filters.png" alt="filter"></p>
+
+<h4 id="toc_10">3. Describe how you performed a perspective transform and provide an example of a transformed image.</h4>
+
+<p>The four points to apply a transformation are the bottem corners of the image and then two points which are moved some percent from the center of the image to the left and right and some percent to the bottom. To find which values for these percentages are good I used the ipython interactive widgets and sliders. I used an image with straight lines as a reference and moved the sliders to get prallel straight lines in the transformed image.</p>
+
+<p>In the left image you can see a red rectangle. This is the rectangle used for the perspective transform to the right image.</p>
+
+<p><img src="./submission_img/warp_straight.png" alt="transform straight"></p>
+
+<p>Here is an example with a curve.</p>
+
+<p><img src="./submission_img/warp.png" alt="transform curve"></p>
+
+<p>Here the warp and the filters are combined:
+<img src="./submission_img/warp_filters.png" alt="warp and filter"></p>
+
+<h4 id="toc_11">4. Describe how you identified lane-line pixels and fit their positions with a polynomial?</h4>
+
+<p>As a first step a sliding window is extracted from the bottom of the filtered and transformed image. Then a histogramm is calculated which sums the number of white pixels for each column in the window.</p>
+
+<p>The histogram gets split in half and the peaks in the histogram are used to calculate boxes in which lane lines are identified. These boxes have a width of 300 pixels and are 72 pixels high. The center of the box is at the peak of the histogram.</p>
+
+<p><img src="./submission_img/sliding_window.png" alt="sliding window"></p>
+
+<p>Then the boxes is moved from the bottom to the top of the image. A new histogram is calculated for each box and the box is repositioned at the peak of the histogram. </p>
+
+<p>Here you can see the boxes moving along the lane lines:
+<img src="./submission_img/search_boxes.png" alt="boxes"></p>
+
+<p>Then all white pixels in the left or right boxes are marked as left or right lane pixels. Their position in the image is used to fit a polynomial line.</p>
+
+<p>The function for a polynomial line is:</p>
+
+<p>x = f(y)</p>
+
+<p>x = A * y**2 + B * y + C</p>
+
+<p>The pixels are fitted and the function is solved for the A, B and C coefficient.</p>
+
+<p>Here you can see in orange the pixels of the left lane and in blue the pixels of the right lane. Green are the boxes to search for lane pixels and in yellow are the fitted polynomial lines.
+<img src="./submission_img/search_boxes_colored.png" alt="boxes"></p>
+
+<h4 id="toc_12">5. Describe how you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.</h4>
+
+<p>The curve is calculated at the same place where the lines are fitted in the <code>fit_lane</code> function . The formula to calculate the curve at any point y is as follows:</p>
+
+<p><img src="./submission_img/curve_formula.png" alt="curve formula"></p>
+
+<p>So I calculated the curve at the very bottom of the image (y = 720). </p>
+
+<h4 id="toc_13">6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.</h4>
+
+<p>Here is an example of my result on a test image:</p>
+
+<p><img src="./submission_img/lanes.png" alt="lanes on original image"></p>
+
+<hr>
+
+<h3 id="toc_14">Pipeline (video)</h3>
+
+<h4 id="toc_15">1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).</h4>
+
+<p>I made two videos, one with smoothing of the lane coefficients enabled and one disabled. You can see that most of the failures get resolved by the smoothing.</p>
+
+<p>At the bottom of the video you can see the filtered an transformed image, the sliding boxes to find the lines and the curvature and deviation from the line center.</p>
+
+<p>Here&#39;s a <a href="./video_out/project_video.mp4">link to my video without smoothing</a></p>
+
+<p>Here&#39;s a <a href="./video_out/project_video_smooth.mp4">link to my video with smoothing</a></p>
+
+<hr>
+
+<h3 id="toc_16">Discussion</h3>
+
+<h4 id="toc_17">1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?</h4>
+
+<p>I don&#39;t really like the approach to set hardcoded thresholds to create a binary image. I think a lot of information is lost by that process. Also when the conditions of the image, like the brightness, changes the thresholds are most likely wrong and it results in failures. Also it is very time consuming to pick good thresholds. I definetly should have invested more time into that. But isn&#39;t parameter tuning something an optimizer should do? Therefore one has to come up with a clever way to calculate the error.</p>
+
+<p>Also for steep curves the perspective transformation is not ideal, as the lane lines get out of the frame. This is already an issue with the lane lines in the project video.</p>
+
+<p>I did not have enough time to experiment with the challenge videos, but I ran my pipeline on these videos and it doesn&#39;t work at all. I think the easy challenge needs other source points for the image transformation and a better system to discard wrong lane detections. Im also not sure if it is possible to solve the harder challenge with this approach at all.</p>
+
+<p>Here&#39;s a <a href="./video_out/challenge_video.mp4">link to the challenge video</a></p>
+
+<p>Here&#39;s a <a href="./video_out/harder_challenge_video.mp4">link to the harder challenge video</a></p>
+
+<p>I would really like to experiment with deep concolutional networks to solve this problem. Then the whole image could be used to learn detecting lane lines without discarding any information contained in the original image. Also differences in brightness could automatically resolved by the network. Another <a href="https://towardsdatascience.com/lane-detection-with-deep-learning-part-1-9e096f3320b7">carnd student tried this</a>. He had to put a lot of time into that approach, as he had to generate its own training set but got pretty good results in the end.</p>
+
+
+
+
+</body>
+
+</html>
